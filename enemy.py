@@ -25,3 +25,4 @@ class Enemy:
         self.hp = hp * level
         self.gold = random.randint(30, 50) * level
         self.potions = random.randint(0, 3) * level
+        print(f"hp:{self.hp}gold:{self.gold}potions:{self.potions}")

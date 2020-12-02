@@ -32,6 +32,13 @@ class Player:
         print(f"Enemy deals {damage_taken} damage to {self.name}!")
         return damage_taken
 
+    def is_dead(self):
+        ''' Checks if the player is alive or dead '''
+        if self.hp < 0:
+            return True
+        else:
+            return False
+
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
         while self.hp > 0 and enemy.hp > 0:
@@ -59,4 +66,10 @@ class Player:
         ''' If player wins, adds loot from the enemy to player's inventory '''
         self.gold += enemy.gold
         self.potions += enemy.potions
-        print(f"You have picked up {self.gold} gold and {self.potions} potions!")
+        enemy.gold = 0
+        enemy.potions = 0
+        print(f"You have picked up {self.gold} gold and {self.potions} potions!\n")
+
+    def display_inventory(self):
+        ''' Prints out items currently in the inventory '''
+        print(f"Current HP: {self.hp}\nGold: {self.gold}\nPotions: {self.potions}\nArmor: {self.armor}")
