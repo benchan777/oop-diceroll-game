@@ -26,11 +26,11 @@ class Player:
         print(f"You deal {attack_damage} damage to your opponent!")
         return attack_damage
 
-    def enemy_attack(self):
-        ''' Calculates damage done by the enemy to the player '''
-        attack_damage = random.randint(1, 6) * ((100-self.armor)/100)
-        print(f"Enemy deals {attack_damage} damage to {self.name}!")
-        return attack_damage
+    def take_damage(self, enemy):
+        ''' Modifies damage done by enemy to player based on player armor '''
+        damage_taken = enemy.attack() * ((100-self.armor)/100)
+        print(f"Enemy deals {damage_taken} damage to {self.name}!")
+        return damage_taken
 
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
@@ -46,7 +46,7 @@ class Player:
 
 
             print(f"The enemy attacks {self.name}!")
-            self.hp -= self.enemy_attack()
+            self.hp -= self.take_damage(enemy)
             print(f"{self.name} has {self.hp}hp remaining.\n")
 
         if self.hp > enemy.hp:
