@@ -25,15 +25,30 @@ class Player:
 
     def battle(self, enemy):
         while self.hp > 0 and enemy.hp > 0:
-            print(f"{self.name} attacks the enemy! The enemy has {enemy.hp}hp remaining.")
+            print(f"{self.name} attacks the enemy!")
             enemy.hp -= self.attack()
-            print(f"The enemy attacks {self.name}! {self.name} has {self.hp}hp remaining.")
+            print(f"The enemy has {enemy.hp}hp remaining.\n")
+            
+            if self.hp < 5 and self.potions > 0:
+                self.potions -= 1
+                self.hp += 5
+                print(f"{self.name} uses a potion and gains 5 hp.")
+
+
+            print(f"The enemy attacks {self.name}!")
             self.hp -= self.enemy_attack()
+            print(f"{self.name} has {self.hp}hp remaining.\n")
 
         if self.hp > enemy.hp:
             print(f"{self.name} won!")
+            self.take_loot(enemy)
         else:
-            print(f"Oh no, you've lost =(")
+            print(f"Oh no, you've lost")
+
+    def take_loot(self, enemy):
+        self.gold += enemy.gold
+        self.potions += enemy.potions
+        print(f"You have picked up {self.gold} gold and {self.potions} potions!")
 
 class Game:
     def __init__(self):
