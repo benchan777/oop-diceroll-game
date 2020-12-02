@@ -29,4 +29,4 @@ class Enemy:
     # enemy attack function that deals random damage between 1 and 6
     def attack(self):
         attack_damage = random.randint(1, 6)
-        
+        return attack_damage
