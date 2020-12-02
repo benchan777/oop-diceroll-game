@@ -2,6 +2,12 @@ import random
 
 class Enemy:
     def __init__(self, level, hp = 30):
+        ''' Instance properties:
+            hp: int
+            name: string
+            gold: int
+            potions: int
+        '''
         self.hp = hp * level
         self.name = "Enemy"
 

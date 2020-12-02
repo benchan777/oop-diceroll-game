@@ -3,7 +3,14 @@ from enemy import Enemy
 
 class Player:
     def __init__(self, name, hp = 30, armor = 0):
-        ''' Instantiates the player class '''
+        ''' Instantiates the player class with the following properties:
+            name: string
+            hp: int
+            armor: int
+            potions: int
+            revives: int
+            gold: int
+        '''
         self.name = name
         self.hp = hp
         self.armor = armor
@@ -14,16 +21,19 @@ class Player:
         self.gold = 0
 
     def attack(self):
+        ''' Calculates damage done by player to opponent '''
         attack_damage = random.randint(1, 6)
         print(f"You deal {attack_damage} damage to your opponent!")
         return attack_damage
 
     def enemy_attack(self):
+        ''' Calculates damage done by the enemy to the player '''
         attack_damage = random.randint(1, 6) * ((100-self.armor)/100)
         print(f"Enemy deals {attack_damage} damage to {self.name}!")
         return attack_damage
 
     def battle(self, enemy):
+        ''' Player and opponent take turns attacking each other '''
         while self.hp > 0 and enemy.hp > 0:
             print(f"{self.name} attacks the enemy!")
             enemy.hp -= self.attack()
@@ -46,6 +56,7 @@ class Player:
             print(f"Oh no, you've lost")
 
     def take_loot(self, enemy):
+        ''' If player wins, adds loot from the enemy to player's inventory '''
         self.gold += enemy.gold
         self.potions += enemy.potions
         print(f"You have picked up {self.gold} gold and {self.potions} potions!")
