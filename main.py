@@ -1,5 +1,5 @@
 import random
-from characters import Enemy
+from enemy import Enemy
 
 class Player:
     def __init__(self, name, hp = 30, armor = 0):
