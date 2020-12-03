@@ -31,7 +31,7 @@ class Player:
     def take_damage(self, enemy):
         ''' Modifies damage done by enemy to player based on player armor '''
         damage_taken = enemy.attack() * ((100-self.armor)/100)
-        print(f"Enemy deals {damage_taken} damage to {self.name}!")
+        print(f"{enemy.get_name()} deals {damage_taken} damage to {self.name}!")
         return damage_taken
 
     def is_dead(self):
@@ -41,20 +41,24 @@ class Player:
         else:
             return False
 
+    def restore_hp(self):
+        ''' Fully restores the player's hp '''
+        self.hp = 30
+
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
         while self.hp > 0 and enemy.hp > 0:
-            print(f"{self.name} attacks the enemy!")
+            print(f"{self.name} attacks {enemy.get_name()}!")
             enemy.hp -= self.attack()
-            print(f"The enemy has {enemy.hp}hp remaining.\n")
+            print(f"{enemy.get_name()} has {enemy.hp}hp remaining.\n")
             
-            if self.hp < 5 and self.potions > 0:
-                self.potions -= 1
+            if self.hp < 5 and Player.potions > 0:
+                Player.potions -= 1
                 self.hp += 5
                 print(f"{self.name} uses a potion and gains 5 hp.")
 
 
-            print(f"The enemy attacks {self.name}!")
+            print(f"{enemy.get_name()} attacks {self.name}!")
             self.hp -= self.take_damage(enemy)
             print(f"{self.name} has {self.hp}hp remaining.\n")
 
@@ -62,7 +66,7 @@ class Player:
             print(f"{self.name} won!")
             self.take_loot(enemy)
         else:
-            print(f"Oh no, you've lost")
+            print(f"You have been defeated by {enemy.get_name()}")
 
     def take_loot(self, enemy):
         ''' If player wins, adds loot from the enemy to player's inventory '''
@@ -74,4 +78,4 @@ class Player:
 
     def display_inventory(self):
         ''' Prints out items currently in the inventory '''
-        print(f"Current HP: {self.hp}\nGold: {self.gold}\nPotions: {self.potions}\nArmor: {self.armor}")
+        print(f"Current HP: {self.hp}\nGold: {self.gold}\nPotions: {self.potions}\nArmor: {self.armor}\n")
