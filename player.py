@@ -2,6 +2,9 @@ import random
 from enemy import Enemy
 
 class Player:
+    potions = 3
+    gold = 0
+
     def __init__(self, name, hp = 30, armor = 0):
         ''' Instantiates the player class with the following properties:
             name: string
@@ -16,9 +19,8 @@ class Player:
         self.armor = armor
 
         # inventory
-        self.potions = 3
-        self.revives = 0
-        self.gold = 0
+        # self.potions = 3
+        # self.gold = 0
 
     def attack(self):
         ''' Calculates damage done by player to opponent '''
@@ -64,8 +66,8 @@ class Player:
 
     def take_loot(self, enemy):
         ''' If player wins, adds loot from the enemy to player's inventory '''
-        self.gold += enemy.gold
-        self.potions += enemy.potions
+        Player.gold += enemy.gold
+        Player.potions += enemy.potions
         enemy.gold = 0
         enemy.potions = 0
         print(f"You have picked up {self.gold} gold and {self.potions} potions!\n")
