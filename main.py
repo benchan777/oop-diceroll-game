@@ -4,6 +4,8 @@ from player import Player
 from shop import Shop
 
 class Game:
+    win_count = 0
+
     def __init__(self, player, enemy):
         ''' Instance properties:
             player: string
@@ -33,7 +35,7 @@ class Game:
         elif user_selection == "3":
             shop.display_shop()
         elif user_selection == "4":
-            player.restore_hp()
+            player.restore_hp(Game.win_count)
         else:
             return "You have exited the game."
 
@@ -47,3 +49,7 @@ player.is_dead()
 
 while player.is_dead() != True:
     game.display_options()
+    player.is_dead()
+    Game.win_count += 1
+
+print("You have died. Game over")
