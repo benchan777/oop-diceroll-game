@@ -27,15 +27,21 @@ class Game:
 
         if user_selection == "1":
             opponent.change_level()
-            # enemy_level = int(input("Input what level enemy you'd like to fight: "))
             opponent.revive()
             player.battle(opponent)
+
+            if player.is_dead() != True:
+                Game.win_count += 1
+
         elif user_selection == "2":
             player.display_inventory()
+
         elif user_selection == "3":
             shop.display_shop()
+
         elif user_selection == "4":
             player.restore_hp(Game.win_count)
+
         else:
             return "You have exited the game."
 
@@ -50,6 +56,5 @@ player.is_dead()
 while player.is_dead() != True:
     game.display_options()
     player.is_dead()
-    Game.win_count += 1
 
 print("You have died. Game over")
