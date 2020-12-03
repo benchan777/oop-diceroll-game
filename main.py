@@ -20,26 +20,30 @@ class Game:
 
     def display_options(self):
         ''' Displays options to choose from after a battle '''
-        print("What would you like to do now?\n1: Enter a new battle\n2: Display your current HP and inventory\n3: Open the shop\n4: Restore HP\n5: Exit game")
+        print("What would you like to do now?\n1: Enter a new battle\n2: Display your current HP and inventory\n3: Open the shop\n4: Restore HP\n5: Exit game\n")
         user_selection = input("Choose an option: ")
 
         if user_selection == "1":
-            while player.is_dead() != True:
-                enemy_level = int(input("Input what level enemy you'd like to fight: "))
-                opponent.revive(enemy_level)
-                player.battle(opponent)
+            opponent.change_level()
+            # enemy_level = int(input("Input what level enemy you'd like to fight: "))
+            opponent.revive()
+            player.battle(opponent)
         elif user_selection == "2":
             player.display_inventory()
         elif user_selection == "3":
             shop.display_shop()
         elif user_selection == "4":
-            player.hp = 30
+            player.restore_hp()
         else:
             return "You have exited the game."
 
 shop = Shop()
 player = Player(input("Enter a name: "))
-opponent = Enemy(int(input("Enter what level enemy you want to fight: ")))
+opponent = Enemy(input("Enter enemy's name: "))
+opponent.change_level()
 game = Game(player, opponent)
 game.start_battle()
-game.display_options()
+player.is_dead()
+
+while player.is_dead() != True:
+    game.display_options()
