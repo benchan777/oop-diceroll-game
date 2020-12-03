@@ -1,4 +1,6 @@
 class Shop:
+    gold = 0
+
     def __init__(self, potions = 100, armor = 100, revives = 20):
         ''' Instantiates the Shop class with the following properties:
             potions: int
