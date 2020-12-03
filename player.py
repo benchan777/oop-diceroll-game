@@ -3,6 +3,7 @@ from enemy import Enemy
 
 class Player:
     potions = 3
+    revives = 0
     gold = 0
 
     def __init__(self, name, hp = 30, armor = 0):
@@ -10,17 +11,10 @@ class Player:
             name: string
             hp: int
             armor: int
-            potions: int
-            revives: int
-            gold: int
         '''
         self.name = name
         self.hp = hp
         self.armor = armor
-
-        # inventory
-        # self.potions = 3
-        # self.gold = 0
 
     def attack(self):
         ''' Calculates damage done by player to opponent '''
