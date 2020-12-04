@@ -1,4 +1,5 @@
 import random
+import time
 from enemy import Enemy
 
 class Player:
@@ -15,9 +16,14 @@ class Player:
         self.name = name
         self.hp = hp
         self.armor = armor
+    
+    @classmethod
+    def remove_gold(cls, amount):
+        ''' Removes gold from player class '''
+        cls.gold -= amount
 
     def attack(self):
-        ''' Calculates damage done by player to opponent '''
+        ''' Override enemy's attack method '''
         attack_damage = random.randint(1, 6)
         print(f"You deal {attack_damage} damage to your opponent!")
         return attack_damage
@@ -50,11 +56,16 @@ class Player:
                 Player.potions -= 1
                 self.hp += 5
                 print(f"{self.name} uses a potion and gains 5 hp.")
-
+            # time.sleep(1)
+            if enemy.hp < 1:
+                break
 
             print(f"{enemy.get_name()} attacks {self.name}!")
             self.hp -= self.take_damage(enemy)
             print(f"{self.name} has {self.hp}hp remaining.\n")
+            # time.sleep(1)
+            if self.hp < 1:
+                break
 
         if self.hp > enemy.hp:
             print(f"{self.name} won!")
