@@ -24,8 +24,6 @@ class User:
 
         print("You have died. Game over")
 
-
-        
 class Game(User):
     win_count = 0
 
@@ -67,6 +65,9 @@ class Game(User):
             print("You have exited the game.")
             quit()
 
+#------------------------------------------------
+# Start game
+#------------------------------------------------
 shop = Shop()
 user = User()
 user.run_game()
