@@ -12,11 +12,9 @@ class Player:
         ''' Instantiates the player class with the following properties:
             name: string
             hp: int
-            armor: int
         '''
         self.name = name
         self.hp = hp
-        # self.armor = armor
     
     @classmethod
     def remove_gold(cls, amount):
