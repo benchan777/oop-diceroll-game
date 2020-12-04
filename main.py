@@ -3,7 +3,7 @@ from enemy import Enemy
 from player import Player
 from shop import Shop
 
-class Game:
+class Game(Shop):
     win_count = 0
 
     def __init__(self, player, enemy):
@@ -11,8 +11,6 @@ class Game:
             player: string
             enemy: int
         '''
-        # self.player = Player(input("Enter a name: "))
-        # self.enemy = Enemy(int(input("Enter what level enemy you want to fight: ")))
         self.player = player
         self.enemy = enemy
 
@@ -37,7 +35,7 @@ class Game:
             player.display_inventory()
 
         elif user_selection == "3":
-            shop.display_shop()
+            shop.display_options()
 
         elif user_selection == "4":
             player.restore_hp(Game.win_count)
@@ -45,6 +43,9 @@ class Game:
         else:
             return "You have exited the game."
 
+# ------------------------------------------------
+# Runs the game
+# ------------------------------------------------
 shop = Shop()
 player = Player(input("Enter a name: "))
 opponent = Enemy(input("Enter enemy's name: "))
