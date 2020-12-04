@@ -15,6 +15,11 @@ class Shop:
         self._armor = armor
         self._revives = revives
 
+    def check_shop(self):
+        ''' Checks if the shop has items '''
+        if self._potions == 0 and self._armor == 0 and self._revives == 0:
+            print("The shop is out of stock of items. Please come back later!")
+
     def display_options(self):
         ''' Displays current shop inventory '''
         print(f"1 - Potions: {self._potions} Price: 3 gold\n2 - Armor: {self._armor} Price: 10 gold\n3 - Revives: {self._revives} Price: 100 gold\n")
