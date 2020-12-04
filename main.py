@@ -3,13 +3,36 @@ from enemy import Enemy
 from player import Player
 from shop import Shop
 
-class Game(Shop):
+class User:
+    def __init__(self, player = " ", enemy = " "):
+        ''' Instance properties:
+            player: string
+            enemy: string
+        '''
+        self.player = Player(input("Enter a name: "))
+        self.enemy = Enemy(input("Enter enemy's name: "))
+
+    def run_game(self):
+        self.enemy.change_level()
+        game_start = Game(self.player, self.enemy)
+        game_start.start_battle()
+        self.player.is_dead()
+
+        while self.player.is_dead() != True:
+            game_start.display_options(self.player, self.enemy)
+            self.player.is_dead()
+
+        print("You have died. Game over")
+
+
+        
+class Game(User):
     win_count = 0
 
     def __init__(self, player, enemy):
         ''' Instance properties:
             player: string
-            enemy: int
+            enemy: string
         '''
         self.player = player
         self.enemy = enemy
@@ -18,7 +41,7 @@ class Game(Shop):
         ''' Starts the battle between the player and enemy '''
         self.player.battle(self.enemy)
 
-    def display_options(self):
+    def display_options(self, player, opponent):
         ''' Displays options to choose from after a battle '''
         print("What would you like to do now?\n1: Enter a new battle\n2: Display your current HP and inventory\n3: Open the shop\n4: Restore HP\n5: Exit game\n")
         user_selection = input("Choose an option: ")
@@ -35,6 +58,7 @@ class Game(Shop):
             player.display_inventory()
 
         elif user_selection == "3":
+            shop = Shop()
             shop.display_options()
 
         elif user_selection == "4":
@@ -46,16 +70,19 @@ class Game(Shop):
 # ------------------------------------------------
 # Runs the game
 # ------------------------------------------------
-shop = Shop()
-player = Player(input("Enter a name: "))
-opponent = Enemy(input("Enter enemy's name: "))
-opponent.change_level()
-game = Game(player, opponent)
-game.start_battle()
-player.is_dead()
+# shop = Shop()
+# player = Player(input("Enter a name: "))
+# opponent = Enemy(input("Enter enemy's name: "))
+# opponent.change_level()
+# game = Game(player, opponent)
+# game.start_battle()
+# player.is_dead()
 
-while player.is_dead() != True:
-    game.display_options()
-    player.is_dead()
+# while player.is_dead() != True:
+#     game.display_options()
+#     player.is_dead()
 
-print("You have died. Game over")
+# print("You have died. Game over")
+
+user = User()
+user.run_game()
