@@ -18,6 +18,13 @@ class Enemy:
         self.gold = random.randint(30, 50) * Enemy.level
         self.potions = random.randint(0, 3) * Enemy.level
 
+    @classmethod
+    def change_level(cls):
+        ''' Changes the level of the enemy '''
+        level_input = int(input("Enter the level of the enemy you'd like to fight: "))
+        cls.level = level_input
+        cls.experience = 3 * level_input
+
     def attack(self):
         ''' Calculates damage done by opponent to player '''
         attack_damage = random.randint(1, 6)
@@ -29,12 +36,6 @@ class Enemy:
         self.gold = random.randint(30, 50) * Enemy.level
         self.potions = random.randint(0, 3) * Enemy.level
         print(f"hp:{self.hp}gold:{self.gold}potions:{self.potions}")
-
-    @classmethod
-    def change_level(cls):
-        ''' Changes the level of the enemy '''
-        level_input = int(input("Enter the level of the enemy you'd like to fight: "))
-        cls.level = level_input
 
     def reset_loot(self):
         self.gold = 0
