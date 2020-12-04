@@ -59,7 +59,8 @@ class Player:
 
     def restore_hp(self, win_count):
         ''' Fully restores the player's hp '''
-        self.hp = 30 + Enemy.experience * win_count + Player.armor
+        # Increases hp from base hp based on number of wins and enemy experience
+        self.hp = 30 + Enemy.experience * win_count
 
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
