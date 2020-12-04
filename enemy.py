@@ -8,6 +8,8 @@ class Enemy:
         ''' Instance properties:
             hp: int
             name: string
+            gold: int
+            potions: int
         '''
         self._hp = hp * Enemy.level
         self.name = name
@@ -36,6 +38,7 @@ class Enemy:
         print(f"hp:{self._hp}gold:{self.gold}potions:{self.potions}")
 
     def reset_loot(self):
+        ''' Sets the amount of loot to 0 '''
         self.gold = 0
         self.potions = 0
 
@@ -50,4 +53,5 @@ class Enemy:
         return hp
 
     def take_damage(self, amount):
+        ''' Removes hp from self '''
         self._hp -= amount
