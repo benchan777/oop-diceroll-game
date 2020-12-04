@@ -8,8 +8,6 @@ class Enemy:
         ''' Instance properties:
             hp: int
             name: string
-            gold: int
-            potions: int
         '''
         self._hp = hp * Enemy.level
         self.name = name
