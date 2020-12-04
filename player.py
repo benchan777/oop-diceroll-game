@@ -6,8 +6,9 @@ class Player:
     potions = 3
     revives = 0
     gold = 0
+    armor = 0
 
-    def __init__(self, name, hp = 30, armor = 0):
+    def __init__(self, name, hp = 30):
         ''' Instantiates the player class with the following properties:
             name: string
             hp: int
@@ -15,12 +16,27 @@ class Player:
         '''
         self.name = name
         self.hp = hp
-        self.armor = armor
+        # self.armor = armor
     
     @classmethod
     def remove_gold(cls, amount):
         ''' Removes gold from player class '''
         cls.gold -= amount
+
+    @classmethod
+    def add_potions(cls, amount):
+        ''' Add potions to player inventory '''
+        cls.potions += amount
+
+    @classmethod
+    def add_revives(cls, amount):
+        ''' Add revives to player inventory '''
+        cls.revives += amount
+    
+    @classmethod
+    def add_armor(cls, amount):
+        ''' Increase base hp of player '''
+        cls.armor += amount
 
     def attack(self):
         ''' Override enemy's attack method '''
@@ -30,7 +46,7 @@ class Player:
 
     def take_damage(self, enemy):
         ''' Modifies damage done by enemy to player based on player armor '''
-        damage_taken = enemy.attack() * ((100-self.armor)/100)
+        damage_taken = enemy.attack() * ((100-Player.armor)/100)
         print(f"{enemy.get_name()} deals {damage_taken} damage to {self.name}!")
         return damage_taken
 
@@ -41,9 +57,9 @@ class Player:
         else:
             return False
 
-    def restore_hp(self, win_hp_modifier):
+    def restore_hp(self, win_count):
         ''' Fully restores the player's hp '''
-        self.hp = 30 + Enemy.experience * win_hp_modifier
+        self.hp = 30 + Enemy.experience * win_count + Player.armor
 
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
