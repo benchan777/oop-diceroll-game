@@ -64,17 +64,17 @@ class Player:
 
     def battle(self, enemy):
         ''' Player and opponent take turns attacking each other '''
-        while self.hp > 0 and enemy.hp > 0:
+        while self.hp > 0 and enemy.get_hp() > 0:
             print(f"{self.name} attacks {enemy.get_name()}!")
-            enemy.hp -= self.attack()
-            print(f"{enemy.get_name()} has {enemy.hp}hp remaining.\n")
+            enemy.take_damage(self.attack())
+            print(f"{enemy.get_name()} has {enemy.get_hp()}hp remaining.\n")
             
             if self.hp < 5 and Player.potions > 0:
                 Player.potions -= 1
                 self.hp += 5
                 print(f"{self.name} uses a potion and gains 5 hp.")
             # time.sleep(1)
-            if enemy.hp < 1:
+            if enemy.get_hp() < 1:
                 break
 
             print(f"{enemy.get_name()} attacks {self.name}!")
@@ -84,7 +84,7 @@ class Player:
             if self.hp < 1:
                 break
 
-        if self.hp > enemy.hp:
+        if self.hp > enemy.get_hp():
             print(f"{self.name} won!")
             self.take_loot(enemy)
         else:
