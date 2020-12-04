@@ -73,14 +73,14 @@ class Player:
                 Player.potions -= 1
                 self.hp += 5
                 print(f"{self.name} uses a potion and gains 5 hp.")
-            # time.sleep(1)
+            time.sleep(0.5)
             if enemy.get_hp() < 1:
                 break
 
             print(f"{enemy.get_name()} attacks {self.name}!")
             self.hp -= self.take_damage(enemy)
             print(f"{self.name} has {self.hp}hp remaining.\n")
-            # time.sleep(1)
+            time.sleep(0.5)
             if self.hp < 1:
                 break
 
