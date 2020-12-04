@@ -11,7 +11,7 @@ class Enemy:
             gold: int
             potions: int
         '''
-        self.hp = hp * Enemy.level
+        self._hp = hp * Enemy.level
         self.name = name
 
         # enemy loot, modified by level
@@ -32,10 +32,10 @@ class Enemy:
 
     def revive(self, hp = 30):
         ''' Revives the enemy for the next round with newly generated loot '''
-        self.hp = hp * Enemy.level
+        self._hp = hp * Enemy.level
         self.gold = random.randint(30, 50) * Enemy.level
         self.potions = random.randint(0, 3) * Enemy.level
-        print(f"hp:{self.hp}gold:{self.gold}potions:{self.potions}")
+        print(f"hp:{self._hp}gold:{self.gold}potions:{self.potions}")
 
     def reset_loot(self):
         self.gold = 0
@@ -45,3 +45,11 @@ class Enemy:
         ''' Retrieves the enemy's name '''
         name = self.name
         return name
+
+    def get_hp(self):
+        ''' Retrieves the enemy's hp '''
+        hp = self._hp
+        return hp
+
+    def take_damage(self, amount):
+        self._hp -= amount
