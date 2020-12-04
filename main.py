@@ -58,31 +58,15 @@ class Game(User):
             player.display_inventory()
 
         elif user_selection == "3":
-            shop = Shop()
             shop.display_options()
 
         elif user_selection == "4":
             player.restore_hp(Game.win_count)
 
         else:
-            return "You have exited the game."
+            print("You have exited the game.")
+            quit()
 
-# ------------------------------------------------
-# Runs the game
-# ------------------------------------------------
-# shop = Shop()
-# player = Player(input("Enter a name: "))
-# opponent = Enemy(input("Enter enemy's name: "))
-# opponent.change_level()
-# game = Game(player, opponent)
-# game.start_battle()
-# player.is_dead()
-
-# while player.is_dead() != True:
-#     game.display_options()
-#     player.is_dead()
-
-# print("You have died. Game over")
-
+shop = Shop()
 user = User()
 user.run_game()
