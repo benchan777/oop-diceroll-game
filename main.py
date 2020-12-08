@@ -9,6 +9,11 @@ class User:
             player: string
             enemy: string
         '''
+        self.player = player
+        self.enemy = enemy
+
+    def input_info(self):
+        ''' Input player and enemy name '''
         self.player = Player(input("Enter a name: "))
         self.enemy = Enemy(input("Enter enemy's name: "))
 
@@ -27,13 +32,17 @@ class User:
 class Game(User):
     win_count = 0
 
-    def __init__(self, player, enemy):
+    def __init__(self, player = " ", enemy = " "):
         ''' Instance properties:
             player: string
             enemy: string
         '''
         self.player = player
         self.enemy = enemy
+
+    def input_info(self):
+        ''' set enemy's level '''
+        self.enemy.change_level()
 
     def start_battle(self):
         ''' Starts the battle between the player and enemy '''
@@ -70,4 +79,7 @@ class Game(User):
 #------------------------------------------------
 shop = Shop()
 user = User()
+game = Game()
+user.input_info()
+game.input_info
 user.run_game()
